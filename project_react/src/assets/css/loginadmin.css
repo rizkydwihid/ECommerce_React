@@ -1,0 +1,62 @@
+@import url('http://fonts.googleapis.com/css?family=Raleway');
+/* 
+body .admin{
+  background-image: url('../img/cover.jpg')
+} */
+.wrapper-2 {
+    /* background-color: #02564f; */
+    margin-top: 80px;
+    margin-bottom: 80px; 
+    font-family: Raleway, sans-serif;
+}
+.btnloginn{
+    width: 100%;
+    background-color: #287a6a;
+    color: white;
+    border:none; 
+}
+
+.btnloginn:hover, .btnregis:hover{
+    background-color:#e1a70a;
+    color: black;
+}
+  .form-admin {
+    max-width: 380px;
+    padding: 20px 35px 45px;
+    margin: 0 auto;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.1); 
+    border-radius: 10px;
+    -webkit-box-shadow: 0px 4px 3px 0px #02564f;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+    .form-admin .form-admin-heading,
+    .form-admin {
+      margin-bottom: 30px; }
+    .form-admin{
+      font-weight: normal; }
+    .form-admin .form-control {
+      position: relative;
+      font-size: 16px;
+      height: auto;
+      padding: 10px; }
+      .form-admin .form-control:focus {
+        z-index: 2; }
+    .form-admin input[type="text"] {
+      margin-bottom: -1px;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0; }
+    .form-admin input[type="password"] {
+      margin-bottom: 20px;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0; }
+/*# sourceMappingURL=output.css.map */
+
+@media (max-width: 500px) {
+  .fotm-admin{
+    width: 100px;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}

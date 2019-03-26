@@ -1,0 +1,124 @@
+@import url('http://fonts.googleapis.com/css?family=Raleway');
+
+/* navbar */
+* {
+    box-sizing: border-box;
+}
+
+.nav {
+    height: 50px;
+    width: 100%;
+    background-color: white;
+    /* position: relative; */
+}
+.navbar-toggler {
+    width: 50px;
+    height: 50px;
+    border: none;
+    color: #287a6a;
+}
+
+.nav-link {
+    margin-left: 10px;
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.collapse {
+    width: auto;
+}
+
+.nav>.nav-header {
+    display: inline;
+}
+
+.nav>.nav-header>.nav-title {
+    display: inline-block;
+    font-size: 22px;
+    color:#287a6a;
+    padding: 10px 10px 10px 10px;
+}
+
+.nav>.nav-btn {
+    display: none;
+}
+
+.nav>.nav-links {
+    display: block;
+    float: right;
+    font-size: 18px;
+    z-index: 10;
+    color: #287a6a !important;
+}
+
+.nav>.nav-links>a {
+    display: inline-block;
+    padding: 13px 10px 13px 10px;
+    text-decoration: none;
+    color: #287a6a;
+}
+
+.nav>.nav-links>a:hover {
+    background-color: #eee;
+}
+
+.nav>#nav-check {
+    display: none;
+}
+
+@media (max-width:600px) {
+    .nav>.nav-btn {
+        display: inline-block;
+        position: absolute;
+        right: 0px;
+        top: 0px;
+    }
+
+    .nav>.nav-btn>label {
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        padding: 13px;
+    }
+
+    .nav>.nav-btn>label:hover {
+        background-color: #eee(0, 0, 0, 0.3);
+    }
+
+    .nav>.nav-btn>label>span {
+        display: block;
+        width: 25px;
+        height: 10px;
+        border-top: 2px solid #eee;
+    }
+
+    .nav>.nav-links {
+        position: absolute;
+        display: block;
+        width: 100%;
+        background-color: #eee;
+        height: 0px;
+        transition: all 0.3s ease-in;
+        overflow-y: hidden;
+        top: 50px;
+        left: 0px;
+    }
+
+    .nav>.nav-links>a {
+        display: block;
+        width: 100%;
+
+    }
+
+    .nav>#nav-check:not(:checked)+.nav-links {
+        height: 0px;
+    }
+
+    .nav>#nav-check:checked+.nav-links {
+        height: calc(50vh - 50px);
+        overflow-y: auto;
+    }
+}
+hr{
+    box-shadow: 0px 1px 4px 1px #287a6a;
+}

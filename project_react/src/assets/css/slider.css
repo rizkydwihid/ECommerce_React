@@ -1,0 +1,66 @@
+.card {
+  margin: 0 auto;
+  /* box-shadow: 0px 1px 2px 1px #d4f442;
+  border-radius: 15px; */
+  border: transparent
+}
+.card .carousel-item {
+  height: 350px;  
+}
+.card .carousel-caption {
+  padding: 0;
+  right: 0;
+  left: 0;
+  color: #287a6a;
+}
+.col-sm-4{
+  padding-bottom: 20px;
+}
+.card .carousel-caption h3 {
+  color: #3d3d3d;
+}
+.card .carousel-caption p {
+  line-height: 30px;
+}
+.card .carousel-caption .col-sm-3 {
+  display: flex;
+  align-items: center;
+  
+}
+.card .carousel-caption .col-sm-9 {
+  text-align: left;
+}
+.navi a {
+    text-decoration:none;
+}
+.ico{
+  margin-top:10px;
+  margin-bottom: 5px;
+  margin-left: 5px;
+}
+a > .ico {
+    background-color: #287a6a;
+    border-radius: 2px;
+    height: 15px;
+    width: 15px;
+}
+a:hover > .ico {
+    background-color: #287a6a;
+}
+.btn{
+  width: 200px;
+  background-color:#287a6a ;
+  border: 2px solid #287a6a;
+  color: white;
+  padding: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  margin: 12px 0;
+  font-family: Raleway, sans-serif;
+  font-weight: 600;
+}
+.btn:hover{
+  background-color: #d4f442;
+  border: #d4f442;
+  color: black;
+}
