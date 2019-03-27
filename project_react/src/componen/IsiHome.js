@@ -25,13 +25,11 @@ class IsiHome extends Component{
                      <p>Warna: <span style={{fontWeight:"600"}}>{this.props.warna}</span></p>
                      <p>Harga Distributor: <s style={{color:"red",fontWeight:"500"}}>Rp {this.props.hargadistri}</s></p>
                      <p>Harga Bandrol: <span style={{fontWeight:"600"}}>Rp {this.props.hargabandrol}</span></p>
-                     {/* <button class="btnlogin btn-lg btn-primary btn-block " type="submit" onClick={() => this.addCart()}><i className="fas fa-cart-plus" ></i> Add to cart</button><br/> */}
-                     {/* <button class="btnlogin btn-lg btn-primary btn-block " ><i className="fas fa-info-circle"></i> Detail</button><br/> */}
                      <Link to={this.state.link + this.props.id} class="btnlogin btn-lg btn-primary btn-block" style={{textAlign:"center"}}><i className="fas fa-info-circle"></i> Detail</Link><br/>
                   </div>
             </div>
-        )
-    }
+         )
+      }
    }
 
 export default IsiHome;

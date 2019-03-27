@@ -31,12 +31,9 @@ class Home extends Component {
         .catch(function(error){
             // console.log("failed get data product", error);
         });
-    //     console.log("local state product", this.state.listProduk)
     }
 
     render(){
-        // const {listProduk} = this.state;
-        // console.log("Test isi listproduk", this.state.listProduk)
         return(
             <div>
                 <Navbar/>

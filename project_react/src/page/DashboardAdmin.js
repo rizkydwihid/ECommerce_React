@@ -16,12 +16,12 @@ class DashboardAdmin extends Component {
         idproduk: ""
         }
     }
-    delProduct = () => {
-        this.props.deleteProduct().then(()=> {
-            console.log("addddd",this);
-            this.props.history.replace("/home");
-          });
-        };
+    // delProduct = () => {
+    //     this.props.deleteProduct().then(()=> {
+    //         console.log("addddd",this);
+    //         this.props.history.replace("/home");
+    //       });
+    //     };
     
     componentDidMount= () => {
         // this.componentDidCatch.params.index
@@ -51,7 +51,7 @@ class DashboardAdmin extends Component {
                     <div class="profile-container">
                       <div class="row">
                       <div class="col-md-4">
-                        <img src={require('../assets/img/lg.png')} class="img-responsive" width="100" height="100" />
+                        <img src={require('../assets/img/lg.png')} class="img-responsive" style={{width:"100",height:"100"}} />
                       </div>
                       <div class="col-md-8 profile-info">
                         <h4 class="user-name-prof">{this.props.username}</h4>
@@ -76,8 +76,9 @@ class DashboardAdmin extends Component {
                       </div>
                       </div>
                       <br/>
-                      <Link to="/add" style={{color:"#02564f",textDecoration:"none"}}><i class="fas fa-list-ul"></i> List User</Link> &nbsp;&nbsp; | &nbsp;&nbsp;
-                      <Link to="/add" style={{color:"#02564f",textDecoration:"none"}}><i class="fas fa-plus-circle"></i> Post Product</Link> &nbsp;&nbsp; | &nbsp;&nbsp; 
+                      <Link to="/listuser" style={{color:"#02564f",textDecoration:"none"}}><i class="fas fa-list-ul"></i> List User</Link> &nbsp;&nbsp; | &nbsp;&nbsp;
+                      {/* <Link to="/home" style={{color:"red",textDecoration:"none"}} onClick={() => this.delProduct()}><i class="fas fa-list-ul"></i> Delete User</Link> &nbsp;&nbsp; | &nbsp;&nbsp; */}
+                      <Link to="/add" style={{color:"#02564f",textDecoration:"none"}}><i class="fas fa-plus-circle"></i> Post Product</Link> &nbsp;&nbsp; | &nbsp;&nbsp;
                       
                     </div>
                     </div><br/>
@@ -88,4 +89,4 @@ class DashboardAdmin extends Component {
   }
 }
 export default connect(
-  "is_login, username, password, email, phone", actions)(withRouter(DashboardAdmin));
+  "is_login, username, password, email, phone, token", actions)(withRouter(DashboardAdmin));

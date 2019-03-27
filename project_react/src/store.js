@@ -1,9 +1,7 @@
 import createStore from "unistore";
 import axios from "axios";
 
-// const urlDetailProduct = "http://localhost:8010/proxy/produk?rp=50";
-// const idproduk = this.props.location.pathname.slice(8)
-const baseURL = "http://0.0.0.0:5000/produk"
+
 const initialState = {
   username: "",
   password: "",
@@ -26,6 +24,8 @@ const initialState = {
   token: "",
   name: "",
   produk_id: "",
+  custid: "",
+  roleStatus: "",
   listKategori: []
 
 
@@ -49,18 +49,19 @@ export const actions = store => ({
   postLoginAdmin: async state => {
     const data = { username: state.username, password: state.password };
     await axios
-      .post("http://localhost:8010/proxy/auth/pelapak", data,{
+      .post("http://localhost:8010/proxy/auth/pelapak", data, {
         headers: {
           'Content-Type':'application/json',
         }
       })
       .then((response) => {
         console.log("post loginnnnnn!!!!", response.data);
-        if (response.status == 200) {
+        if (response.status === 200) {
           store.setState({
             is_login: true,
             email:response.data.email,
-            token:response.data.token
+            token:response.data.token,
+            roleStatus: "pelapak"
           });
         }
       })
@@ -80,11 +81,12 @@ export const actions = store => ({
       })
       .then((response) => {
         console.log("post loginnnnnn!!!!", response.data);
-        if (response.status == 200) {
+        if (response.status === 200) {
           store.setState({
             is_login: true,
             email:response.data.email,
-            token: response.data.token
+            token: response.data.token,
+            roleStatus: "customer"
           });
         }
       })
@@ -105,7 +107,7 @@ export const actions = store => ({
       })
       .then((response) => {
         // console.log("post loginnnnnn!!!!", response.data);
-        if (response.status == 200) {
+        if (response.status === 200) {
           store.setState({
             is_login: true,
             username: response.data.username,
@@ -140,7 +142,7 @@ export const actions = store => ({
       })
       .then((response) => {
         // console.log("post produk!", response.data);
-        if (response.status == 200) {
+        if (response.status === 200) {
           console.log("ujiiii", response.data)
           store.setState({
 
@@ -153,69 +155,83 @@ export const actions = store => ({
   },
 
   // edit product
-  putProduct: async state => {
-    const data = {
-      nama_produk: state.name,
-      kategori: state.kategori,
-      merk: state.merk,
-      stok: state.stok,
-      harga_distri: state.hargadistri,
-      harga_bandrol: state.hargabandrol,
-      warna: state.warna,
-      ukuran: state.ukuran,
-      gambar: state.gambar,
-      deskripsi: state.deskripsi };
-    await axios
-      .put("http://localhost:8010/proxy/produk", data,{
-        headers: {
-          // 'Content-Type':'application/json',
-          Authorization: "Bearer " + state.token
-        }
-      })
-      .then((response) => {
-        // console.log("post produk!", response.data);
-        if (response.status == 200) {
-          console.log("ujiiii", response.data)
-          store.setState({
-
-          });
-        }
-      })
-      .catch(function(error) {
-        console.log(error);
+  putProduct: async (state, id) => {
+    const urlput = "http://localhost:8010/proxy/produk/" + id
+    await axios({
+      method: 'delete',
+      url: urlput,
+      headers: {
+        Authorization: 'Bearer ' + state.token
+      }
+      }).then(function(response) {
+          console.log("sudah di hapus", response)
+      }).catch(function(error) {
+          console.log("Produk gagal dihapus", error)
       });
+    
+    // const data = {
+      
+    //   nama_produk: state.name,
+    //   kategori: state.kategori,
+    //   merk: state.merk,
+    //   stok: state.stok,
+    //   harga_distri: state.hargadistri,
+    //   harga_bandrol: state.hargabandrol,
+    //   warna: state.warna,
+    //   ukuran: state.ukuran,
+    //   gambar: state.gambar,
+    //   deskripsi: state.deskripsi };
+    //   console.log("test put", data)
+    // await axios
+    //   .put("http://localhost:8010/proxy/produk/" + keyword, data,{
+    //     headers: {
+    //       // 'Content-Type':'application/json',
+    //       Authorization: "Bearer " + state.token,
+    //     }
+    //   })
+    //   .then((response) => {
+    //     // console.log("post produk!", response.data);
+    //     if (response.status === 200) {
+    //       console.log("ujiiii", response.data)
+    //       store.setState({
+               
+    //           nama_produk: response.data.name,
+    //           kategori: response.data.kategori,
+    //           merk: response.data.merk,
+    //           stok: response.data.stok,
+    //           harga_distri: response.data.hargadistri,
+    //           harga_bandrol: response.data.hargabandrol,
+    //           warna: response.data.warna,
+    //           ukuran: response.data.ukuran,
+    //           gambar: response.data.gambar,
+    //           deskripsi: response.data.deskripsi
+    //       });
+    //     }
+    //   })
+    //   .catch(function(error) {
+    //     console.log(error);
+    //   });
   },
+
   // delete product
   deleteProduct: async (state, id) => {
-    const deleteData = {
-      method: 'delete',
-      url: URL,
-      headers: { Authorization: "Bearer " + state.token }
-  }
-  await axios(deleteData)
-      .then(function (response) {
-          
-          if (response.status == 200) {
-              store.setState({
-                produk_id: "",
-                nama_produk: "",
-                kategori: "",
-                merk: "",
-                stok: "",
-                harga_distri: "",
-                harga_bandrol: "",
-                warna: "",
-                ukuran: "",
-                gambar: "",
-                deskripsi:""
-              })
-          }
-      })
-      .catch(function (error) {
-          console.log(error);
-      });
-},  
-
+    // console.log("tesst del lagi", id)
+    const urldelete = "http://localhost:8010/proxy/produk/" + id
+      
+  // console.log("url token ", store.token)
+  await axios({
+    method: 'delete',
+    url: urldelete,
+    headers: {
+      Authorization: 'Bearer ' + state.token
+    }
+    }).then(function(response) {
+        console.log("sudah di hapus", response)
+    }).catch(function(error) {
+        console.log("Produk gagal dihapus", error)
+    });
+  },
+  // post cart
   postCart: async (state, e) => {
     const data = { produk_id: e.target.value, qty: state.qty};
     await axios
@@ -225,28 +241,30 @@ export const actions = store => ({
         Authorization: "Bearer " + state.token
       }
     })
-    alert("Success add to cart..")
+    // alert("Success add to cart..")
     .then((response) => {
       // console.log("add cart", response.data);
       alert("Success to add cart")
       })
     },
-searchCategory : async state => {
-  await axios
-  .get(baseURL)
-  .then((response)=> {
-    store.setState({listKategori: response.data.produk})
-  })
-  .catch (function(error){
-  console.log(error);        
-  })
-},
-getURLSepatu: async state =>{
-  await axios
-      .get(URL)
-      .then(function(response){
-          store.setState({listKategori: response.data.produk})
-      })
-    }
+
+    
+// searchCategory : async state => {
+//   await axios
+//   .get(baseURL)
+//   .then((response)=> {
+//     store.setState({listKategori: response.data.produk})
+//   })
+//   .catch (function(error){
+//   console.log(error);        
+//   })
+// },
+// getURLSepatu: async state =>{
+//   await axios
+//       .get(URL)
+//       .then(function(response){
+//           store.setState({listKategori: response.data.produk})
+//       })
+//     }
   
 });

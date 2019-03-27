@@ -18,7 +18,9 @@ class Keranjang extends Component{
     componentDidMount = async () => {
         console.log("token", this.props.token)
         const self = this;
-        const URL = "http://localhost:8010/proxy/cart"
+        const URL = "http://localhost:8010/proxy/cart";
+        
+        console.log("ini token",this.props.token)
         await axios
         .get(URL, {
             headers: {
@@ -31,7 +33,7 @@ class Keranjang extends Component{
         .catch(function(error){
             // console.log("failed get data product", error);
         });
-    //     console.log("local state product", this.state.listProduk)
+        
     }
     render(){
         console.log("list cart", this.listCart)
@@ -44,7 +46,7 @@ class Keranjang extends Component{
                         const imeg = item.gambar !== null ? item.gambar: "";
                         const namabarang= item.nama_barang !== null ? item.nama_barang: "";
                         const totqty = item.qty !== null ? item.qty: "";
-                        const totbayar= item.total_bayar !== null ? item.total_bayar: "";
+                        const totbayar= item.total_byr !== null ? item.total_byr: "";
                         const status= item.status !== null ? item.status: "";
                         
                         return <IsiKeranjang key={key} imeg={imeg} namabarang={namabarang} totqty={totqty} totbayar={totbayar} status={status}/>; 
@@ -57,4 +59,4 @@ class Keranjang extends Component{
     }
 }
 export default connect(
-    "is_login, username, password", actions)(withRouter(Keranjang));
+    "is_login, username, password, token", actions)(withRouter(Keranjang));

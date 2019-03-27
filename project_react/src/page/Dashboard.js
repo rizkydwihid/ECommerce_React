@@ -47,11 +47,12 @@ class Dashboard extends Component {
                       </div>
                       </div>
                       <br/>
-                      <Link to="#edit" style={{color:"#02564f",textDecoration:"none"}}><i class="fas fa-edit"></i> Update Account</Link> &nbsp;&nbsp; | &nbsp;&nbsp; <Link to="#" style={{color:"red",textDecoration:"none"}}><i class="fas fa-minus-circle" style={{color:"red"}}></i> Delete Account</Link>
+                      <Link to="#edit" style={{color:"#02564f",textDecoration:"none"}}><i class="fas fa-edit"></i> Update Account</Link> &nbsp;&nbsp; | &nbsp;&nbsp; 
+                      <Link to="#" style={{color:"red",textDecoration:"none"}}><i class="fas fa-minus-circle" style={{color:"red"}}></i> Delete Account</Link>
                     </div>
                     </div>
 
-                    <div class="profile-container edit" style={{display:"none"}}>
+                    {/* <div class="profile-container edit" style={{display:"none"}}>
                       <div class="row">
                       <div class="col-md-4">
                         <img src={require('../assets/img/lg.png')} class="img-responsive" width="100" height="100" />
@@ -79,8 +80,8 @@ class Dashboard extends Component {
                       </div>
                       </div>
                       <br/>
-                    </div>
-                    {/* </div> */}
+                    </div> */}
+                    
                     <br/>
                 <Footer/>
             </div>

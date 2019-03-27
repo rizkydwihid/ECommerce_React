@@ -6,16 +6,14 @@ import '../assets/css/login.css';
 import Navbar from '../componen/Navbar';
 import Footer from '../componen/Footer';
 
-class AddProduct extends Component{
-    editProduct = () => {
-        this.props.putProduct().then(()=> {
-        //   console.log("addddd",this);
-          this.props.history.replace("/put");
-          alert("Edit data success")
-        });
-      };
-  
-
+class EditProduct extends Component{
+  editProduct = (e) => {
+    this.props.putProduct(e.target.value).then(()=> {
+    //   console.log("addddd",this);
+      this.props.history.replace("/home");
+      // alert("Edit data success")
+    });
+  }; 
     render(){
         return(
             <div>
@@ -26,11 +24,18 @@ class AddProduct extends Component{
                 <div className="form_wrapper addpro">
                   <div className="form_container">
                     <div className="title_container">
-                      <h2>Add New Product</h2>
+                      <h2>Edit Product</h2>
                     </div>
                     <div className="row clearfix">
                       <div className="">
                         <form onSubmit={event => event.preventDefault()}>
+                        {/* <div className="row clearfix">
+                                <div className="col_half">
+                                    <div className="input_field"> <span><i class="fas fa-tags"></i></span>
+                                    <input type="text" name="idprod" placeholder="Produk Id" required onChange={e => this.props.setField(e)}/>
+                                    </div>
+                                </div>
+                                </div> */}
                             <div className="row clearfix">
                                 <div className="col_half">
                                     <div className="input_field"> <span><i class="fas fa-tags"></i></span>
@@ -67,7 +72,7 @@ class AddProduct extends Component{
                             <div className="input_field"> <span><i aria-hidden="true" className="fa fa-envelope"></i></span>
                             <input type="text" name="deskripsi" placeholder="Deskripsi" required onChange={e => this.props.setField(e)}/>
                             </div>          
-                            <input className="buttonreg" type="submit" value="Add Product" onClick={() => this.editProduct()} /><br/>
+                            <input className="buttonreg" type="submit" value="Update Product" onClick={(e) => this.editProduct(e)} value={this.props.location.pathname.slice(8)}/><br/>
                         </form><br/>
                       </div>
                     </div>
@@ -81,4 +86,4 @@ class AddProduct extends Component{
     }
 }
 export default connect(
-    "name, kategori, merk, stok, hargadistri, hargabandrol, warna, ukuran, gambar, deskripsi", actions)(withRouter(AddProduct));
+    "name, kategori, merk, stok, hargadistri, hargabandrol, warna, ukuran, gambar, deskripsi, idprod, token", actions)(withRouter(EditProduct));

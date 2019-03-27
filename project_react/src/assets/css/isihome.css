@@ -13,6 +13,7 @@ h1 {
 	max-width: 980px;
 	margin: 0 auto;
 }
+
 .btncart{
   width: 200px;
 }
@@ -28,6 +29,20 @@ h1 {
 	transform-origin:50% 50%;
 	animation-fill-mode: forwards;
   background-color: white;
+}
+.card-container-list {
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	transition: 0.3s;
+	width: 300px;;
+	border-radius: 5px;
+  margin:10px auto;
+	-webkit-animation:scaledown 0.3s linear;
+	-moz-animation:scaledown 0.3s linear;
+	animation:scaledown 0.2s linear;
+	transform-origin:50% 50%;
+	animation-fill-mode: forwards;
+  background-color: white;
+  margin-right: 20px;
 }
 
 .card-container:hover {

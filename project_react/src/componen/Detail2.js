@@ -6,6 +6,7 @@ import '../assets/css/isihome.css';
 import {connect} from 'unistore/react';
 import {withRouter} from 'react-router-dom';
 import {actions} from '../store';
+import {Link} from 'react-router-dom';
 
 class Detail2 extends Component{
     constructor (props){
@@ -23,7 +24,8 @@ class Detail2 extends Component{
             size: "",
             stok: "",
             deskripsi: "",
-            idproduk: "", 
+            idproduk: "",
+            produk_id: "" 
         }
     }
     addCart = (e) => {
@@ -33,22 +35,29 @@ class Detail2 extends Component{
         });
       };
      // link = link + this.props.id
-     
-    componentDidMount= () => {
+    delProd = (e) => {
+        this.props.deleteProduct(e).then(() => {
+            this.props.history.replace("/home")
+        })
+    }
+    
+    componentDidMount= async () => {
         // this.componentDidCatch.params.index
         const idproduk = this.props.location.pathname.slice(8)
         const url = "http://0.0.0.0:5000/produk/" + idproduk
         const self = this;
-        axios.get(url)
+        await axios.get(url)
         .then(function(response) {
             // console.log("test url 2", response.data)
                 self.setState({...response.data}, () => {
+                // console.log("test response", response)
                 // console.log('test', self.state)
             })
+                self.setState({ id: response.data.produk_id })
         })
-
     }
     render(){
+        const editurl = "/edit/" + this.state.id
         return(
           
             <div>
@@ -72,7 +81,11 @@ class Detail2 extends Component{
                                 <p> Harga Distributor : <s style={{color:"red",fontWeight:"500"}}>Rp {this.state.harga_distri}</s></p>
                                 <p> Harga Bandrol : <span style={{fontWeight:"600"}}>Rp {this.state.harga_bandrol}</span></p>
                                 <p> <br/>Qty: <input type="number" name="qty" onChange={e => this.props.setField(e)}/></p>
-                                <button className="btnlogin btn-lg btn-primary btn-block " type="submit" onClick={(e) => this.addCart(e)} value={this.props.location.pathname.slice(8)}><i className="fas fa-cart-plus" ></i> Add to cart</button><br/><br/>
+                                <button className="btnlogin btn-lg btn-primary btn-block " type="submit" onClick={(e) => this.addCart(e)} value={this.props.location.pathname.slice(8)}><i className="fas fa-cart-plus" ></i> Add to cart</button><br/>
+                                {/* <button className="btnlogin btn-lg btn-primary btn-block " type="submit" onClick={(e) => this.delProd(e)} value={this.props.location.pathname.slice(8)}><i class="fas fa-minus-circle" style={{color:"red"}}></i> Delete Product</button><br/> */}
+                                <button className="btnlogin btn-lg btn-primary btn-block " type="submit" onClick={() => this.delProd(this.state.id)} value={this.props.location.pathname.slice(8)}><i class="fas fa-minus-circle" style={{color:"red"}}></i> Delete Product</button><br/>
+
+                                <Link to={editurl}> Edit Product </Link>
                             </div>
                     </div>
                     </div>
@@ -84,4 +97,4 @@ class Detail2 extends Component{
     }
 }
 export default connect(
-    "qty", actions)(withRouter(Detail2));
+    "qty, produk_id, token", actions)(withRouter(Detail2));

@@ -14,6 +14,8 @@ import Detail2 from './componen/Detail2';
 import AddProduct from './page/AddProduct';
 import DashboardAdmin from './page/DashboardAdmin';
 import EditProduct from './page/EditProduct';
+import ListUser from './page/ListUser';
+// import IsiListUser from './componen/IsiListUser';
 // import Detail from './page/Detail';
 
 const MainRoute = () => {
@@ -33,6 +35,9 @@ const MainRoute = () => {
             <Route path="/add" component={AddProduct}/>
             <Route path="/dashboardadmin" component={DashboardAdmin}/>
             <Route path="/cart" component={Keranjang}/>
+            <Route path="/edit" component={EditProduct}/>
+            {/* <Route path="/listuser" component={IsiListUser}/> */}
+            <Route path="/listuser" component={ListUser}/>
             <Route path="/edit" component={EditProduct}/>
             
         </Switch>
